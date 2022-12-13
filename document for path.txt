@@ -1,0 +1,30 @@
+数据路径
+
+/data_zfs/fast/zhaodong/                # --dataroot
+——/workdir         # --rawdir (初始成图所在文件夹)
+————/Dec+2842_arcdrift-M14_0679      # 自动读取、
+——————/output	# 自动读取
+————————/pulsar_image1.png  # 自动读取
+————————/other_image1.jpg
+————————/ ... ...
+——————/data2      # 自动读取
+————————/pulsar_image2.png  # 自动读取
+————————/other_image2.jpg
+————————/ ... ...
+————/Dec+2842_arcdrift-M14_0679      # 自动读取、
+——————/output	# 自动读取
+————————/pulsar_image1.png  # 自动读取
+————————/other_image1.jpg
+————————/ ... ...
+——————/data2      # 自动读取
+————————/pulsar_image2.png  # 自动读取
+————————/other_image2.jpg
+————————/ ... ...
+#---
+——/cropped         # 自动保存 cropped 图像
+————/test
+——————/no_pulsar 
+————————/pulsar_image1.png
+————————/ ... ...
+——————/pulsar         # 空文件夹
+——————/ test_id.txt  # 保存图片路径，用于模型读取
