@@ -105,12 +105,25 @@ if __name__ == "__main__":
 
     Score_list = sorted(Score_list, key=lambda x: -x[0]) 
 
-    predict_sortedpath = cfg.OUTPUT_DIR+'/predict_value'
+    predict_sortedpath = './predict_value'
     if not os.path.exists(predict_sortedpath):
         os.mkdir(predict_sortedpath)
     prediet_sortedtxt=open(predict_sortedpath+'/predict_sorted.txt','w')
+    if not os.path.exists(predict_sortedpath + nopulsar_save):
+        os.mkdir(predict_sortedpath + nopulsar_save)
+    if not os.path.exists(predict_sortedpath + pulsar_save):
+        os.mkdir(predict_sortedpath + pulsar_save)
+
     for ImagePath in Score_list: 
         prediet_sortedtxt.write('Score'+'\t'+str(ImagePath[0])+'\t'+'image'+'\t'+str(ImagePath[1])+'\n')
+        img = cv2.imread(ImagePath[1])
+        if ImagePath[0] > args.threshold:
+            imgname = ImagePath[1].split("/")
+            cv2.imwrite(predict_sortedpath + pulsar_save + '/' + imgname[-1], img)
+        else:
+            imgname = ImagePath[1].split("/")
+            cv2.imwrite(predict_sortedpath + nopulsar_save + '/' + imgname[-1], img)
+
 
     prediet_sortedtxt.close()
 
