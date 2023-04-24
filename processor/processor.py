@@ -160,7 +160,7 @@ def do_inference(cfg,
     model.eval()
     img_path_list = []
     
-    predict_savepath = cfg.OUTPUT_DIR+'/predict_value'
+    predict_savepath = '/predict_value'
     if not os.path.exists(predict_savepath):
         os.mkdir(predict_savepath)
     prediet_txt=open(predict_savepath+'/predict.txt','w')
