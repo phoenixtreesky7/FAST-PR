@@ -16,6 +16,7 @@ from imgcrop import accrop, fastcrop
 from path2txt import path2txt
 import argparse
 import numpy as np
+import cv2
 os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 
 
@@ -50,6 +51,7 @@ elif args.croptype == 'fast':
     crop_path = fastcrop(dataroot=args.dataroot, rawdir=args.rawdir, region=args.cropregion, skip=args.skipcrop) 
 else:
     print('Wrong croptype! Croptype should be "ac" or "fast".')
+    
 print('cropped samples are saved in', crop_path)
 
 #print('Data Listing is Begining!')
@@ -63,6 +65,9 @@ if __name__ == "__main__":
     cfg.DEVICE_ID = args.gpu_id
     cfg.TEST_WEIGHT = args.model
     cfg.ISTRAIN = args.istrain
+
+    nopulsar_save = args.nopulsar_save
+    pulsar_save = args.pulsar_save
 
     log_dir = args.dataroot
     logger = setup_logger('{}.test'.format(cfg.PROJECT_NAME), log_dir)
@@ -109,7 +114,7 @@ if __name__ == "__main__":
             Score_list.append((score, name))
 
     Score_list = sorted(Score_list, key=lambda x: -x[0]) 
-
+    
     predict_sortedpath = './predict_value'
     if not os.path.exists(predict_sortedpath):
         os.mkdir(predict_sortedpath)
