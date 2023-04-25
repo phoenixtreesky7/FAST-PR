@@ -35,6 +35,11 @@ parser.add_argument('--skiplist', action='store_true', help='If true, skip the i
 
 parser.add_argument('--istrain', action='store_true', help='if true, training the model; if false, testing.')
 parser.add_argument('--model', required=False, default='D:/dzhao/CODE/RFI_CLASS/pulsar_class_resnet50/output/resnet50_30.pth', help='path of the pretrained model.')
+
+parser.add_argument('--threshold', type=int, default=0, help='threshold of the score to define pulsar or not pulsar')
+parser.add_argument('--pulsar_save', required=False, default='/pulsar_img', help='saved path of the detected pulsar images')
+parser.add_argument('--nopulsar_save', required=False, default='/nopulsar_img', help='saved path of the detected no_pulsar images')
+
 parser.add_argument('--gpu_id', type=str, default="0", help='Number of the GPU.')
 args = parser.parse_args()
 
